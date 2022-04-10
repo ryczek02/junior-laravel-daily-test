@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::select(['id', 'name', 'logo', 'email', 'website'])->get();
+        return view('companies', compact($companies));
     }
 
     /**
@@ -24,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies-create-edit');
     }
 
     /**
@@ -35,7 +36,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -57,7 +58,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies-create-edit');
     }
 
     /**

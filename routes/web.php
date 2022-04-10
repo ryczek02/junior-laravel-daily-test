@@ -21,4 +21,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+/*
+ * Resource Routes for Companies and Employees
+ */
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resources([
+        'companies' => \App\Http\Controllers\CompanyController::class,
+        'employees' => \App\Http\Controllers\EmployeeController::class,
+    ]);
+});
+
+
 require __DIR__.'/auth.php';
