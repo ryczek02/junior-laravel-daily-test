@@ -7,6 +7,7 @@ use App\Http\Requests\CompanyStorePostRequest;
 use App\Models\Company;
 use App\Helper\ImageFileUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -36,10 +37,10 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CompanyStorePostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyStorePostRequest $request)
     {
         if( $file = $request->file('logo') ) {
             $path = 'companies/company';
@@ -75,14 +76,13 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-
         return view('companies-edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CompanyEditPostRequest  $request
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
@@ -91,6 +91,7 @@ class CompanyController extends Controller
         $company->name = $request->name;
         $company->email = $request->email;
         $company->website = $request->website;
+
         if( $file = $request->file('logo') ) {
             $path = 'companies/company';
             $url = $this->file($file,$path,100, 100);
@@ -112,6 +113,7 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->employees()->delete();
+        Storage::disk('public')->delete($company->logo);
         $company->delete();
 
         return back()->with('success', 'Company and employees related to it is succesfully deleted.');

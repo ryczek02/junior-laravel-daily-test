@@ -15,50 +15,50 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    Companies
+                    Employees
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2 p-4">
-                <a href="{{route('companies.create')}}" class="bg-green-500 hover:bg-green-400 text-white font-semibold rounded p-2">
-                    Create new company
+                <a href="{{route('employees.create')}}" class="bg-green-500 hover:bg-green-400 text-white font-semibold rounded p-2">
+                    Add new employee to company
                 </a>
 
-                @if (count($companies))
+                @if (count($employees))
                     <div class="border rounded grid grid-cols-5 mt-4">
                         <div class="font-semibold p-4 border bg-gray-100">
-                            Logo
+                            First Name
                         </div>
                         <div class="font-semibold p-4 border bg-gray-100">
-                            Name
+                            Company name
                         </div>
                         <div class="font-semibold p-4 border bg-gray-100">
                             Email
                         </div>
                         <div class="font-semibold p-4 border bg-gray-100">
-                            Website
+                            Phone
                         </div>
                         <div class="font-semibold p-4 border bg-gray-100">
                             Manage
                         </div>
 
-                        @foreach ($companies as $company)
+                        @foreach ($employees as $employee)
                             <div class="p-4 border">
-                                <img src="storage/{{$company['logo']}}" alt="Logo of {{$company['name']}}">
+                                {{$employee['first_name']}} {{$employee['last_name']}}
                             </div>
                             <div class="p-4 border">
-                                {{$company['name']}}
+                                {{$employee['company']['name']}}
                             </div>
                             <div class="p-4 border">
-                                {{$company['email']}}
+                                {{$employee['email']}}
                             </div>
                             <div class="p-4 border">
-                                {{$company['website']}}
+                                {{$employee['phone']}}
                             </div>
                             <div class="p-4 border">
-                                <a href="{{route('companies.edit', ['company'=>$company['id']])}}">
+                                <a href="{{route('employees.edit', ['employee'=>$employee['id']])}}">
                                     Edit
                                 </a>
-                                <form action="{{ route('companies.destroy', $company['id']) }}" method="POST">
+                                <form action="{{ route('employees.destroy', $employee['id']) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button>Delete</button>

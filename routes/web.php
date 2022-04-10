@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $companies = \App\Models\Company::count();
+    $employees = \App\Models\Employee::count();
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $companies = \App\Models\Company::count();
+    $employees = \App\Models\Employee::count();
+    return view('dashboard', compact('companies', 'employees'));
 })->middleware(['auth'])->name('dashboard');
 
 /*

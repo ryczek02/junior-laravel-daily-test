@@ -13,9 +13,9 @@
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2 p-4">
-                <a href="{{route('companies.index')}}" class="underline text-green-600">Manage companies (21)</a>
+                <a href="{{route('companies.index')}}" class="underline text-green-600">Manage companies ({{$companies}})</a>
                 <br>
-                <a href="" class="underline text-green-600">Manage employees (21)</a>
+                <a href="{{route('employees.index')}}" class="underline text-green-600">Manage employees ({{$employees}})</a>
 
             </div>
         </div>
