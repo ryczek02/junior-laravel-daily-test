@@ -68,6 +68,10 @@
 
 
                     </div>
+                    <div class="mt-4">
+                        {{$employees->links()}}
+                    </div>
+
                     @endif
 
             </div>

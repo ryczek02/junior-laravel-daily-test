@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/n', function(){
-    return dd(Auth::user()->notifications()->get());
-});
 
 Route::get('/', function () {
     $companies = \App\Models\Company::count();
