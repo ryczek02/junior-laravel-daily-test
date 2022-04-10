@@ -22,7 +22,7 @@ Simple project from [Laravel Daily](https://laraveldaily.com/test-junior-laravel
 - ✅ Basic Tailwind front-end
 - ✅ Pagination
 
-##Extra tasks
+## Extra tasks
 - ✅ Tests with PHPUnit
 - ✅ Email notification using Laravel Notification
 - 🔁 Multi-language
