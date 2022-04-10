@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyEditPostRequest;
+use App\Http\Requests\CompanyStorePostRequest;
 use App\Models\Company;
+use App\Helper\ImageFileUpload;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    use ImageFileUpload;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::select(['id', 'name', 'logo', 'email', 'website'])->get();
-        return view('companies', compact($companies));
+        return view('companies', compact('companies'));
     }
 
     /**
@@ -25,7 +30,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies-create-edit');
+        return view('companies-create');
     }
 
     /**
@@ -36,7 +41,19 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        if( $file = $request->file('logo') ) {
+            $path = 'companies/company';
+            $url = $this->file($file,$path,100, 100);
+        }
+
+        $company = Company::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'website' => $request->website,
+            'logo' => $url
+        ]);
+
+        return redirect(route('companies.index'))->with('success', 'Company created successfully');
     }
 
     /**
@@ -58,7 +75,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('companies-create-edit');
+
+        return view('companies-edit', compact('company'));
     }
 
     /**
@@ -68,9 +86,21 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyEditPostRequest $request, Company $company)
     {
-        //
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->website = $request->website;
+        if( $file = $request->file('logo') ) {
+            $path = 'companies/company';
+            $url = $this->file($file,$path,100, 100);
+            $company->logo = $url;
+        }
+
+        if($company->save()){
+            return redirect(route('companies.index'))->with('success', 'Company updated succesfully!');
+        }
+        return redirect(route('companies.index'))->with('success', 'Error while updating!');
     }
 
     /**
@@ -81,6 +111,9 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->employees()->delete();
+        $company->delete();
+
+        return back()->with('success', 'Company and employees related to it is succesfully deleted.');
     }
 }

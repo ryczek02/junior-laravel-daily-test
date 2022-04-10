@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-2 p-4">
-                <a href="" class="underline text-green-600">Manage companies (21)</a>
+                <a href="{{route('companies.index')}}" class="underline text-green-600">Manage companies (21)</a>
                 <br>
                 <a href="" class="underline text-green-600">Manage employees (21)</a>
 
