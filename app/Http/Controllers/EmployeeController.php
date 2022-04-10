@@ -17,7 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::select(['id', 'company_id', 'first_name', 'last_name', 'phone', 'email'])->with('company:id,name')->get();
+        $employees = Employee::select(['id', 'company_id', 'first_name', 'last_name', 'phone', 'email'])->with('company:id,name')->latest()->paginate(10);
         return view('employees', compact('employees'));
     }
 

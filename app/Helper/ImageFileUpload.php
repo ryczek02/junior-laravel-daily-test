@@ -19,7 +19,7 @@ Trait ImageFileUpload
             $url             = $file->storeAs($this->public_path,$file_name);
             $public_path     = public_path($this->storage_path.$file_name);
             $img             = Image::make($public_path)->resize($width, $height);
-            $url             = preg_replace( "/public/", "", $url );
+            $url             = preg_replace( "/public/", "/storage/", $url );
             return $img->save($public_path) ? $url : '';
         }
     }

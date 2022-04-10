@@ -57,7 +57,7 @@
                         <p class="text-red-600">{{ $errors->first('phone') }}</p>
                     @endif
 
-                    <input type="submit" value="Create company" class="cursor-pointer rounded mt-4 bg-green-500 hover:bg-green-400 text-white font-semibold p-4">
+                    <input type="submit" value="Create employee" class="cursor-pointer rounded mt-4 bg-green-500 hover:bg-green-400 text-white font-semibold p-4">
                 </form>
 
             </div>

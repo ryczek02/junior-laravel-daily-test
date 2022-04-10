@@ -20,7 +20,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::select(['id', 'name', 'logo', 'email', 'website'])->get();
+        $companies = Company::select(['id', 'name', 'logo', 'email', 'website'])->latest()->paginate(10);
         return view('companies', compact('companies'));
     }
 

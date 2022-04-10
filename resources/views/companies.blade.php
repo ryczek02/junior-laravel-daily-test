@@ -43,7 +43,7 @@
 
                         @foreach ($companies as $company)
                             <div class="p-4 border">
-                                <img src="storage/{{$company['logo']}}" alt="Logo of {{$company['name']}}">
+                                <img src="{{$company['logo']}}" alt="Logo of {{$company['name']}}">
                             </div>
                             <div class="p-4 border">
                                 {{$company['name']}}
@@ -66,7 +66,7 @@
                             </div>
                         @endforeach
 
-
+                        {{ $companies->links() }}
                     </div>
                     @endif
 
