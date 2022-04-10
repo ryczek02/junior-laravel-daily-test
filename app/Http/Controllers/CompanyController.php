@@ -7,7 +7,9 @@ use App\Http\Requests\CompanyStorePostRequest;
 use App\Models\Company;
 use App\Helper\ImageFileUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\NewCompanyNotifcation;
 
 class CompanyController extends Controller
 {
@@ -53,6 +55,12 @@ class CompanyController extends Controller
             'website' => $request->website,
             'logo' => $url
         ]);
+
+        Auth::user()->notify(new NewCompanyNotifcation([
+            'name' => $company->name,
+            'email' => $company->email,
+            'website' => $company->website
+        ]));
 
         return redirect(route('companies.index'))->with('success', 'Company created successfully');
     }
