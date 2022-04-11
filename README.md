@@ -23,6 +23,19 @@ Simple project from [Laravel Daily](https://laraveldaily.com/test-junior-laravel
 - ✅ Email notification using Laravel Notification
 - ✅ Multi-language
 
+## Installation
+```
+git clone https://github.com/ryczek02/laravel-minicrm.git
+cd laravel-minicrm
+npm install
+npm run dev
+composer install
+```
+Modify .env (configure database and SMTP for mailing)
+```
+composer test
+php artisan serve
+```
 ## License
 
 The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

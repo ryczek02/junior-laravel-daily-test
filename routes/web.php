@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     $companies = \App\Models\Company::count();
     $employees = \App\Models\Employee::count();
