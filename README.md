@@ -50,7 +50,9 @@ Auth::user()->notify(new NewCompanyNotifcation([
     'website' => $company->website
 ]));
 ```
-
+## TODO:
+- Mailing in Laravel Listeners
+- Tests for mailing
 
 ## License
 
