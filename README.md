@@ -35,6 +35,9 @@ Rename .env.example to .env (and configure database and SMTP for mailing)
 ```bash
 php artisan migrate:fresh
 php artisan key:generate
+php artisan storage:link
+php artisan db:seed
+php artisan db:seed --class=CompanySeeder # optional, sample records 
 composer test
 php artisan serve
 ```
