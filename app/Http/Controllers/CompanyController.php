@@ -56,11 +56,13 @@ class CompanyController extends Controller
             'logo' => $url
         ]);
 
-        Auth::user()->notify(new NewCompanyNotifcation([
-            'name' => $company->name,
-            'email' => $company->email,
-            'website' => $company->website
-        ]));
+        // u can it uncomment when SMTP is configured
+        // TODO: refactor to laravel events
+//        Auth::user()->notify(new NewCompanyNotifcation([
+//            'name' => $company->name,
+//            'email' => $company->email,
+//            'website' => $company->website
+//        ]));
 
         return redirect(route('companies.index'))->with('success', 'Company created successfully');
     }

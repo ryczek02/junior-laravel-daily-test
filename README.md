@@ -24,18 +24,29 @@ Simple project from [Laravel Daily](https://laraveldaily.com/test-junior-laravel
 - ✅ Multi-language
 
 ## Installation
-```
+```bash
 git clone https://github.com/ryczek02/laravel-minicrm.git
 cd laravel-minicrm
 npm install
 npm run dev
 composer install
 ```
-Modify .env (configure database and SMTP for mailing)
-```
+Rename .env.example to .env (and configure database and SMTP for mailing)
+```bash
 composer test
 php artisan serve
 ```
+### Mailing
+Uncomment these lines in app/Http/Controllers/CompanyController.php and configure SMTP in .env
+```php
+Auth::user()->notify(new NewCompanyNotifcation([
+    'name' => $company->name,
+    'email' => $company->email,
+    'website' => $company->website
+]));
+```
+
+
 ## License
 
 The project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

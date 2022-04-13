@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $companies = \App\Models\Company::count();
-    $employees = \App\Models\Employee::count();
-    return view('welcome');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::get('/dashboard', function () {
     $companies = \App\Models\Company::count();

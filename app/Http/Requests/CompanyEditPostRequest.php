@@ -26,7 +26,7 @@ class CompanyEditPostRequest extends FormRequest
         return [
             'name' => 'required|max:256',
             'email' => 'required|email|max:128',
-            'logo' => 'image',
+            'logo' => 'image|max:2048',
             'website' => 'required|max:128'
         ];
     }
