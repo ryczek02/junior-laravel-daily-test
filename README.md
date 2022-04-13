@@ -34,6 +34,7 @@ composer install
 Rename .env.example to .env (and configure database and SMTP for mailing)
 ```bash
 php artisan migrate:fresh
+php artisan key:generate
 composer test
 php artisan serve
 ```
