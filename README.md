@@ -21,7 +21,6 @@ Simple project from [Laravel Daily](https://laraveldaily.com/test-junior-laravel
 ## Extra tasks
 - ✅ Tests with PHPUnit
 - ✅ Email notification using Laravel Notification
-- ✅ Multi-language
 
 ## Installation
 ```bash
